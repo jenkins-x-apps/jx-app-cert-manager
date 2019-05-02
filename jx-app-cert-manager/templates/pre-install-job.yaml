@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ template "cert-manager.fullname" . }}
+  labels:
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app.kubernetes.io/name: {{ template "cert-manager.name" . }}
+  annotations:
+    "helm.sh/hook": pre-install
+spec:
+  template:
+    metadata:
+      name: {{ template "cert-manager.fullname" . }}
+      labels:
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/name: {{ template "cert-manager.name" . }}
+    spec:
+      restartPolicy: {{ .Values.restartPolicy }}
+      containers:
+      - name: install-crds
+        image: "gcr.io/jenkinsxio/builder-go:0.1.437"
+        command: ["kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/{{.Chart.Version}}/deploy/manifests/00-crds.yaml"]
+      - name: set-validation-off
+        image: "gcr.io/jenkinsxio/builder-go:0.1.437"
+        command: ["kubectl label namespace cert-manager certmanager.k8s.io/disable-validation='true'"]
