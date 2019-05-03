@@ -22,4 +22,4 @@ spec:
         command: ["kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/{{.Chart.Version}}/deploy/manifests/00-crds.yaml"]
       - name: set-validation-off
         image: "gcr.io/jenkinsxio/builder-go:0.1.437"
-        command: ["kubectl label namespace cert-manager certmanager.k8s.io/disable-validation='true'"]
+        command: ["kubectl label namespace jx certmanager.k8s.io/disable-validation='true'"]
