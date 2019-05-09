@@ -19,4 +19,4 @@ spec:
       containers:
       - name: install-crds
         image: "gcr.io/jenkinsxio/builder-go:0.1.437"
-        command: ["kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/{{.Chart.Version}}/deploy/manifests/00-crds.yaml"]
+        command: ["kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.7/deploy/manifests/00-crds.yaml"]
