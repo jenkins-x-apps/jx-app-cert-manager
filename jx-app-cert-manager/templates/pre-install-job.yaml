@@ -15,11 +15,8 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name }}
         app.kubernetes.io/name: {{ template "cert-manager.name" . }}
     spec:
-      restartPolicy: {{ .Values.restartPolicy }}
+      restartPolicy: Never
       containers:
       - name: install-crds
         image: "gcr.io/jenkinsxio/builder-go:0.1.437"
-        command: ["kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/{{.Chart.Version}}/deploy/manifests/00-crds.yaml"]
-      - name: set-validation-off
-        image: "gcr.io/jenkinsxio/builder-go:0.1.437"
-        command: ["kubectl label namespace jx certmanager.k8s.io/disable-validation='true'"]
+        command: ["kubectl apply -f https://raw.githubusercontent.com/jetstack/cert-manager/release-0.7/deploy/manifests/00-crds.yaml"]
