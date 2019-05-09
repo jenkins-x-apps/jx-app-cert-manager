@@ -15,7 +15,7 @@ spec:
         app.kubernetes.io/instance: {{ .Release.Name }}
         app.kubernetes.io/name: {{ template "cert-manager.name" . }}
     spec:
-      restartPolicy: {{ .Values.restartPolicy }}
+      restartPolicy: Never
       containers:
       - name: install-crds
         image: "gcr.io/jenkinsxio/builder-go:0.1.437"
