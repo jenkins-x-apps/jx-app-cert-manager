@@ -5,7 +5,8 @@ metadata:
   labels:
     controller-tools.k8s.io: "1.0"
   name: certificates.certmanager.k8s.io
-  jx-app-order: 0
+  annotations:
+    "helm.sh/hook": "crd-install"
 spec:
   additionalPrinterColumns:
   - JSONPath: .status.conditions[?(@.type=="Ready")].status
@@ -205,6 +206,8 @@ metadata:
   labels:
     controller-tools.k8s.io: "1.0"
   name: challenges.certmanager.k8s.io
+  annotations:
+    "helm.sh/hook": "crd-install"
 spec:
   additionalPrinterColumns:
   - JSONPath: .status.state
@@ -359,6 +362,8 @@ metadata:
   labels:
     controller-tools.k8s.io: "1.0"
   name: clusterissuers.certmanager.k8s.io
+  annotations:
+    "helm.sh/hook": "crd-install"
 spec:
   group: certmanager.k8s.io
   names:
@@ -615,6 +620,8 @@ metadata:
   labels:
     controller-tools.k8s.io: "1.0"
   name: issuers.certmanager.k8s.io
+  annotations:
+    "helm.sh/hook": "crd-install"
 spec:
   group: certmanager.k8s.io
   names:
@@ -871,6 +878,8 @@ metadata:
   labels:
     controller-tools.k8s.io: "1.0"
   name: orders.certmanager.k8s.io
+  annotations:
+    "helm.sh/hook": "crd-install"
 spec:
   additionalPrinterColumns:
   - JSONPath: .status.state
