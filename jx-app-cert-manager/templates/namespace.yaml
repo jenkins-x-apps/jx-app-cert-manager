@@ -3,6 +3,6 @@ kind: Namespace
 metadata:
   labels:
     "certmanager.k8s.io/disable-validation": true
-  name: jx
+  name: {{ .Release.Namespace }}
   annotations:
     "helm.sh/hook": "pre-install"
